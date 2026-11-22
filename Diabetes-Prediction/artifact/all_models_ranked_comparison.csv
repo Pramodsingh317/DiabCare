@@ -1,0 +1,10 @@
+Feature_Set,Model,F1-Score,Accuracy,Combined_Score
+Experiment 1 (Default),Logistic Regression,0.9866,0.9775,0.982
+Experiment 3 (Version 8),Logistic Regression,0.9863,0.977,0.9816
+Experiment 2 (Version 5),Logistic Regression,0.986,0.9765,0.9812
+Experiment 3 (Version 8),SVM,0.9859,0.9762,0.9811
+Experiment 1 (Default),SVM,0.9857,0.976,0.9809
+Experiment 3 (Version 8),Random Forest,0.9854,0.9755,0.9804
+Experiment 2 (Version 5),SVM,0.985,0.9748,0.9799
+Experiment 2 (Version 5),Random Forest,0.9846,0.9742,0.9794
+Experiment 1 (Default),Random Forest,0.9839,0.973,0.9785

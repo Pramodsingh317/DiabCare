@@ -1,0 +1,29 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+router-outlet + footer {
+  margin-top: auto;
+}
+
+footer {
+  padding: 22px 24px;
+  color: var(--color-muted);
+  font-size: 13px;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 600px) {
+  footer {
+    padding: 18px 20px;
+  }
+}

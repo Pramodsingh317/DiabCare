@@ -1,0 +1,138 @@
+
+<main class="assessment-page">
+  <a class="back-link" routerLink="/">← <span>Back to overview</span></a>
+
+  <header class="page-heading">
+    <span class="eyebrow">PERSONAL HEALTH ASSESSMENT</span>
+    <h1>Your health details</h1>
+    <p>Enter the measurements used by the model to generate an estimate.</p>
+  </header>
+
+  <div class="assessment-layout">
+    <section class="form-card" aria-labelledby="form-title">
+      <div class="card-heading">
+        <div>
+          <h2 id="form-title">Health information</h2>
+          <p>All fields are required. Enter numbers in the units shown.</p>
+        </div>
+        <span class="required-note"><span aria-hidden="true">*</span> Required</span>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submitPrediction()" novalidate>
+        <div class="fields-grid">
+          <div class="field">
+            <label for="glucose">Glucose <span>mg/dL</span></label>
+            <input id="glucose" type="number" formControlName="glucose" min="0" max="300" step="any" placeholder="e.g. 120" required>
+            @if (form.controls.glucose.touched && form.controls.glucose.invalid) {
+              <span class="field-error">Enter a number from 0 to 300.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="bmi">Body mass index <span>kg/m²</span></label>
+            <input id="bmi" type="number" formControlName="bmi" min="0" max="100" step="any" placeholder="e.g. 28.5" required>
+            @if (form.controls.bmi.touched && form.controls.bmi.invalid) {
+              <span class="field-error">Enter a number from 0 to 100.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="cholesterol">Cholesterol <span>mg/dL</span></label>
+            <input id="cholesterol" type="number" formControlName="cholesterol" min="0" max="1000" step="any" placeholder="e.g. 200" required>
+            @if (form.controls.cholesterol.touched && form.controls.cholesterol.invalid) {
+              <span class="field-error">Enter a number from 0 to 1,000.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="insulin">Insulin <span>μU/mL</span></label>
+            <input id="insulin" type="number" formControlName="insulin" min="0" max="1000" step="any" placeholder="e.g. 80" required>
+            @if (form.controls.insulin.touched && form.controls.insulin.invalid) {
+              <span class="field-error">Enter a number from 0 to 1,000.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="bloodPressure">Blood pressure <span>mmHg</span></label>
+            <input id="bloodPressure" type="number" formControlName="bloodPressure" min="0" max="200" step="any" placeholder="e.g. 72" required>
+            @if (form.controls.bloodPressure.touched && form.controls.bloodPressure.invalid) {
+              <span class="field-error">Enter a number from 0 to 200.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="skinThickness">Skin thickness <span>mm</span></label>
+            <input id="skinThickness" type="number" formControlName="skinThickness" min="0" max="100" step="any" placeholder="e.g. 22" required>
+            @if (form.controls.skinThickness.touched && form.controls.skinThickness.invalid) {
+              <span class="field-error">Enter a number from 0 to 100.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="diabetesPedigreeFunction">Diabetes pedigree function <span>score</span></label>
+            <input id="diabetesPedigreeFunction" type="number" formControlName="diabetesPedigreeFunction" min="0" max="10" step="any" placeholder="e.g. 0.35" required>
+            @if (form.controls.diabetesPedigreeFunction.touched && form.controls.diabetesPedigreeFunction.invalid) {
+              <span class="field-error">Enter a number from 0 to 10.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="age">Age <span>years</span></label>
+            <input id="age" type="number" formControlName="age" min="1" max="120" step="1" placeholder="e.g. 35" required>
+            @if (form.controls.age.touched && form.controls.age.invalid) {
+              <span class="field-error">Enter an age from 1 to 120.</span>
+            }
+          </div>
+        </div>
+
+        <p class="form-disclaimer">
+          Use measurements from a qualified health source where possible. This estimate is not a diagnosis.
+        </p>
+
+        <button class="submit-button" type="submit" [disabled]="isSubmitting()">
+          @if (isSubmitting()) {
+            Requesting estimate…
+          } @else {
+            Get my estimate <span aria-hidden="true">→</span>
+          }
+        </button>
+      </form>
+    </section>
+
+    <aside class="result-column" aria-live="polite">
+      @if (result(); as prediction) {
+        <section class="result-card" [class.result-positive]="prediction.prediction === 1">
+          <span class="result-icon" aria-hidden="true">{{ prediction.prediction === 1 ? '!' : '✓' }}</span>
+          <span class="result-eyebrow">MODEL ESTIMATE</span>
+          <h2>{{ prediction.prediction === 1 ? 'Diabetes Risk  Indicated' : 'No Diabetes Risk Indicated' }}</h2>
+          <p>This is an estimate produced by the model, not a medical diagnosis.</p>
+          @if (resultPercent() !== null) {
+            <div class="probability">
+              <div><span>Model probability</span><strong>{{ resultPercent() | number:'1.0-1' }}%</strong></div>
+              <div class="probability-track"><span [style.width.%]="resultPercent()"></span></div>
+            </div>
+          }
+        </section>
+      } @else {
+        <section class="result-placeholder">
+          <span class="placeholder-icon" aria-hidden="true">↗</span>
+          <h2>Your estimate will appear here</h2>
+          <p>Complete all eight fields and submit them to your connected model.</p>
+        </section>
+      }
+
+      @if (errorMessage(); as message) {
+        <div class="error-card" role="alert">
+          <strong>Unable to get an estimate</strong>
+          <p>{{ message }}</p>
+        </div>
+      }
+
+      <div class="privacy-note">
+        <span aria-hidden="true">⌑</span>
+        <p>Your information is sent to the configured prediction service and is not saved by this page.</p>
+      </div>
+      <p class="medical-note">This tool is for educational purposes only. Speak with a healthcare professional about health concerns.</p>
+    </aside>
+  </div>
+</main>

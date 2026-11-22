@@ -1,0 +1,325 @@
+:host {
+  display: block;
+}
+
+.assessment-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 38px 24px 70px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-muted);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.page-heading {
+  margin: 38px 0 30px;
+}
+
+.eyebrow,
+.result-eyebrow {
+  color: var(--color-teal);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1.2px;
+}
+
+.page-heading h1 {
+  margin: 10px 0 8px;
+  font-size: clamp(32px, 4vw, 42px);
+  letter-spacing: -1.7px;
+}
+
+.page-heading p,
+.card-heading p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.assessment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(270px, 0.75fr);
+  align-items: start;
+  gap: 22px;
+}
+
+.form-card,
+.result-placeholder,
+.result-card {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgb(34 71 83 / 5%);
+}
+
+.form-card {
+  padding: 27px;
+}
+
+.card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #edf1f2;
+}
+
+.card-heading h2 {
+  margin: 0 0 7px;
+  font-size: 18px;
+  letter-spacing: -0.4px;
+}
+
+.required-note {
+  flex: 0 0 auto;
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.required-note span {
+  color: #d26e63;
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 19px 16px;
+  padding: 22px 0;
+}
+
+.field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  color: #344c57;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.field label span {
+  margin-left: 4px;
+  color: #8a9aa1;
+  font-size: 10px;
+  font-weight: 450;
+}
+
+.field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #dfe8ea;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: var(--color-ink);
+  font-size: 13px;
+}
+
+.field input:focus {
+  border-color: #69aebf;
+  box-shadow: 0 0 0 3px rgb(33 121 148 / 10%);
+}
+
+.field input.ng-touched.ng-invalid {
+  border-color: #d78278;
+}
+
+.field-error {
+  color: #b94d42;
+  font-size: 10px;
+}
+
+.form-disclaimer {
+  margin: 0 0 17px;
+  color: var(--color-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.submit-button {
+  display: flex;
+  width: 100%;
+  min-height: 47px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.submit-button:disabled {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.result-column {
+  display: grid;
+  gap: 13px;
+}
+
+.result-placeholder,
+.result-card {
+  padding: 24px;
+}
+
+.placeholder-icon,
+.result-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: #eef6f7;
+  color: var(--color-primary);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.result-card {
+  border-color: #cfe7df;
+  background: #f5fbf8;
+}
+
+.result-card.result-positive {
+  border-color: #f0d9ce;
+  background: #fff9f5;
+}
+
+.result-card.result-positive .result-icon {
+  background: #fff0e8;
+  color: #bd694b;
+}
+
+.result-card h2,
+.result-placeholder h2 {
+  margin: 8px 0;
+  color: var(--color-ink);
+  font-size: 18px;
+  letter-spacing: -0.4px;
+  line-height: 1.4;
+}
+
+.result-card p,
+.result-placeholder p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.probability {
+  margin-top: 21px;
+  padding-top: 17px;
+  border-top: 1px solid rgb(42 82 75 / 12%);
+}
+
+.probability > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #647a7b;
+  font-size: 11px;
+}
+
+.probability strong {
+  color: var(--color-ink);
+}
+
+.probability-track {
+  height: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+  border-radius: 8px;
+  background: #e6eeeb;
+}
+
+.probability-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #4a9b82;
+}
+
+.error-card {
+  padding: 15px 16px;
+  border: 1px solid #f0d2cb;
+  border-radius: 11px;
+  background: #fff7f5;
+  color: #934a40;
+  font-size: 12px;
+}
+
+.error-card p {
+  margin: 5px 0 0;
+  line-height: 1.6;
+}
+
+.privacy-note {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #eff6f5;
+  color: #54736f;
+}
+
+.privacy-note > span {
+  flex: 0 0 auto;
+  color: #32816f;
+  font-size: 17px;
+}
+
+.privacy-note p,
+.medical-note {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.medical-note {
+  padding: 0 3px;
+  color: var(--color-muted);
+}
+
+@media (max-width: 780px) {
+  .assessment-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .assessment-page {
+    padding: 28px 17px 48px;
+  }
+
+  .page-heading {
+    margin: 30px 0 23px;
+  }
+
+  .form-card {
+    padding: 20px 17px;
+  }
+
+  .fields-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
